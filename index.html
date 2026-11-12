@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pain &amp; Gain Gym</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Pain & Gain Gym: a full strength floor and a group-class studio in Baalbek. Plans from $25 a month.">
+<meta property="og:title" content="Pain & Gain Gym">
+<meta property="og:description" content="A full strength floor and a group-class studio in Baalbek. Plans from $25 a month.">
+<meta property="og:image" content="img/share.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;700;800&family=Saira:ital,wdth,wght@0,62.5..125,400..900;1,62.5..125,400..900&display=swap">
+<style>
+/* Layout: one dark room lit by gold cove lines. Photo-led hero, then the floor, the studio,
+   a price board and a visit band, each opened by a glowing line like the gym's ceiling LEDs. */
+:root {
+  --black: #000000;      /* logo ground */
+  --ceiling: #18191d;    /* the painted ceiling, for raised surfaces */
+  --concrete: #9a9da3;   /* grey walls and the logo's G */
+  --gold: #f5c400;       /* logo yellow */
+  --glow: #ffb547;       /* warm LED cove light */
+  --chalk: #eceef1;      /* text */
+  --line: #2b2d33;
+
+  --display: "Saira", "Changa", "Arial Narrow", sans-serif;
+  --body: "Saira", "Changa", system-ui, sans-serif;
+
+  --step--1: clamp(0.84rem, 0.8rem + 0.2vw, 0.95rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --step-2: clamp(1.7rem, 1.4rem + 1.4vw, 2.6rem);
+  --step-3: clamp(2.4rem, 1.6rem + 3.8vw, 4.6rem);
+  --step-hero: clamp(3.4rem, 1.4rem + 10vw, 10rem);
+
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --max: 76rem;
+  color-scheme: dark;
+}
+:root[dir="rtl"] {
+  --display: "Changa", "Saira", sans-serif;
+  --body: "Changa", "Saira", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--chalk);
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; line-height: 1.05; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  width: 100%;
+  max-width: calc(var(--max) + 32px);
+  margin-inline: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter-r);
+}
+
+/* The signature: a cove light. A thin gold line with a warm bloom above and below. */
+.cove {
+  height: 2px;
+  background: var(--glow);
+  box-shadow: 0 0 6px 1px rgba(255, 181, 71, 0.75), 0 0 28px 4px rgba(255, 181, 71, 0.28);
+  border-radius: 2px;
+}
+
+/* ---------- Header ---------- */
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--black);
+}
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: rgba(0, 0, 0, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 4.25rem; }
+.brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; margin-inline-end: auto; }
+.brand img { width: 2.75rem; height: 2.75rem; }
+.brand span { font-family: "Saira", sans-serif; font-weight: 800; font-style: italic; font-stretch: 75%; font-size: 1.35rem; letter-spacing: 0.01em; white-space: nowrap; }
+.brand b { color: var(--gold); font-weight: inherit; }
+.nav { display: flex; gap: 1.6rem; }
+.nav a { text-decoration: none; color: var(--concrete); font-weight: 500; transition: color 0.2s; }
+.nav a:hover { color: var(--chalk); }
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+  min-height: 2.9rem; padding: 0 1.3rem;
+  font: 600 var(--step-0)/1 var(--body);
+  text-decoration: none; border-radius: 0.35rem; border: 2px solid transparent;
+  cursor: pointer; transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn svg { width: 1.25em; height: 1.25em; flex: none; }
+.btn-gold { background: var(--gold); color: var(--black); }
+.btn-gold:hover { background: var(--glow); }
+.btn-ghost { border-color: var(--concrete); color: var(--chalk); background: transparent; }
+.btn-ghost:hover { border-color: var(--chalk); }
+.btn-lang { min-height: 2.6rem; padding: 0 0.9rem; border-color: var(--line); color: var(--chalk); background: transparent; font-size: var(--step--1); }
+.btn-lang:hover { border-color: var(--concrete); }
+.btn-lang[lang="ar"] { font-family: "Changa", sans-serif; font-size: 1rem; }
+.btn-lang[lang="en"] { font-family: "Saira", sans-serif; }
+.header-actions .btn-gold { min-height: 2.6rem; padding: 0 1rem; font-size: var(--step--1); }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.hero-photo { position: absolute; inset: 0; z-index: -2; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 60% 40%; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.15) 80%),
+    linear-gradient(to top, var(--black) 0%, rgba(0,0,0,0) 35%);
+}
+:root[dir="rtl"] .hero::after {
+  background:
+    linear-gradient(to left, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.15) 80%),
+    linear-gradient(to top, var(--black) 0%, rgba(0,0,0,0) 35%);
+}
+.hero .wrap { padding-block: clamp(4.5rem, 12vw, 9rem) clamp(3rem, 7vw, 5rem); display: grid; gap: 1.6rem; }
+.hero h1 {
+  font-family: "Saira", sans-serif;
+  font-size: var(--step-hero);
+  font-weight: 900; font-style: italic; font-stretch: 68%;
+  line-height: 0.86; letter-spacing: -0.01em;
+  text-transform: uppercase;
+  display: grid;
+}
+.hero h1 .pain { color: var(--gold); }
+.hero h1 .gain { color: var(--concrete); }
+.hero h1 .amp { color: var(--chalk); font-size: 0.5em; font-stretch: 100%; line-height: 1.1; padding-inline-start: 0.12em; }
+.hero-lead { max-width: 30ch; font-size: var(--step-1); line-height: 1.45; color: var(--chalk); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.hero .cove { width: min(28rem, 70%); margin-top: 1rem; transform-origin: left center; }
+:root[dir="rtl"] .hero .cove { transform-origin: right center; }
+
+/* One orchestrated moment: the cove light switches on, with a fluorescent flicker. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero .cove { animation: switch-on 1.3s 0.25s both; }
+  @keyframes switch-on {
+    0%   { transform: scaleX(0); opacity: 0.2; }
+    45%  { transform: scaleX(1); opacity: 0.35; }
+    55%  { opacity: 1; }
+    62%  { opacity: 0.4; }
+    70%  { opacity: 1; }
+    76%  { opacity: 0.6; }
+    100% { transform: scaleX(1); opacity: 1; }
+  }
+}
+
+/* ---------- Sections ---------- */
+.section { padding-block: clamp(4rem, 9vw, 7rem); }
+.section-head { display: grid; gap: 1.1rem; max-width: 40rem; }
+.section-head .cove { width: 4.5rem; }
+.section h2 {
+  font-family: var(--display);
+  font-size: var(--step-3); font-weight: 800; font-style: italic; font-stretch: 75%;
+  text-transform: uppercase; letter-spacing: 0;
+}
+:root[dir="rtl"] .section h2,
+:root[dir="rtl"] .hero h1 { font-style: normal; }
+:root[dir="rtl"] .section h2 { text-transform: none; font-weight: 800; }
+.section-head p { color: var(--concrete); max-width: 60ch; }
+
+/* The floor: one large photo and two stacked, captions sit on the photos */
+.floor-grid {
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  display: grid; gap: 0.75rem;
+  grid-template-columns: 1.6fr 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+.shot { position: relative; margin: 0; overflow: hidden; border-radius: 0.35rem; background: var(--ceiling); }
+.shot img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16 / 9; }
+.shot.big { grid-row: span 2; }
+.shot.big img { aspect-ratio: auto; min-height: 100%; }
+.shot figcaption {
+  position: absolute; inset-inline-start: 0; bottom: 0;
+  padding: 0.5rem 0.9rem;
+  background: var(--black);
+  font-weight: 600; font-size: var(--step--1);
+  border-start-end-radius: 0.35rem;
+  border-top: 2px solid var(--glow);
+}
+
+/* The studio: photo bleeds to one edge, text beside it */
+.studio { background: var(--ceiling); }
+.studio .wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+.studio .shot img { aspect-ratio: 16 / 10; }
+.studio .section-head { max-width: none; }
+.studio-list { list-style: none; margin: 0.4rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.studio-list li { border: 1px solid var(--line); border-radius: 0.35rem; padding: 0.3rem 0.75rem; font-size: var(--step--1); color: var(--chalk); background: var(--black); }
+.studio .btn { justify-self: start; margin-top: 0.6rem; }
+
+/* Plans: a price board, rows with leader lines like a menu on the gym wall */
+.board { margin-top: clamp(2rem, 5vw, 3rem); border-top: 1px solid var(--line); }
+.plan {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1.25rem; row-gap: 0.15rem;
+  padding-block: 1.25rem; border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.plan-name { font-family: var(--display); font-size: var(--step-2); font-weight: 700; font-stretch: 80%; line-height: 1.1; display: flex; align-items: baseline; gap: 1rem; min-width: 0; }
+.plan-name::after { content: ""; flex: 1; border-bottom: 2px dotted #4a4d55; transform: translateY(-0.3em); min-width: 1.5rem; }
+.plan-price { font-family: "Saira", sans-serif; font-size: var(--step-2); font-weight: 800; font-stretch: 80%; color: var(--gold); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.plan-price small { font-size: 0.45em; font-weight: 500; color: var(--concrete); margin-inline-start: 0.2em; }
+.plan-note { grid-column: 1 / -1; color: var(--concrete); font-size: var(--step--1); }
+.plan.featured .plan-name { color: var(--gold); }
+.board-foot { margin-top: 1.25rem; color: var(--concrete); font-size: var(--step--1); }
+
+/* Visit */
+.visit { padding-block: clamp(4rem, 9vw, 7rem) clamp(3rem, 6vw, 4rem); }
+.visit-band { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(2rem, 5vw, 4rem); align-items: end; }
+.wa-number { font-family: "Saira", sans-serif; font-size: var(--step-3); font-weight: 800; font-stretch: 75%; font-style: italic; letter-spacing: 0.01em; color: var(--chalk); white-space: nowrap; }
+.wa-box { display: grid; gap: 1rem; justify-items: start; }
+.wa-label { color: var(--concrete); font-size: var(--step--1); }
+.wa-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.visit-details { display: grid; gap: 1.4rem; margin-top: 0.8rem; }
+.detail { display: grid; gap: 0.2rem; justify-items: start; }
+.detail-value { font-size: var(--step-1); font-weight: 600; color: var(--chalk); line-height: 1.35; }
+.ig-link { color: var(--gold); text-decoration: none; }
+.ig-link:hover, .text-link:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.text-link { color: var(--gold); font-weight: 600; font-size: var(--step--1); text-decoration: none; }
+.hours { justify-items: stretch; width: min(100%, 27rem); }
+.hours-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.hours-list { margin: 0.35rem 0 0; display: grid; }
+.hours-row { display: flex; justify-content: space-between; gap: 1.5rem; padding-block: 0.45rem; border-bottom: 1px solid var(--line); }
+.hours-row dt, .hours-row dd { margin: 0; }
+.hours-row dt { color: var(--concrete); }
+.hours-row dd { color: var(--chalk); font-weight: 600; font-variant-numeric: tabular-nums; text-align: end; }
+.hours-row.today dt, .hours-row.today dd { color: var(--gold); }
+.hours-row.women dt, .hours-row.women dd { font-size: var(--step--1); font-weight: 500; }
+.open-pill { font-size: var(--step--1); font-weight: 600; padding: 0.1rem 0.7rem; border-radius: 999px; border: 1px solid var(--line); color: var(--concrete); }
+.open-pill.is-open { color: #8be3ad; border-color: #2e6a48; }
+.class-times { color: var(--chalk); font-weight: 600; border-inline-start: 2px solid var(--glow); padding-inline-start: 0.8rem; }
+.copy-status { font-size: var(--step--1); color: var(--gold); min-height: 1.4em; }
+
+.site-footer { border-top: 1px solid var(--line); }
+.site-footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; padding-block: 1.75rem; color: var(--concrete); font-size: var(--step--1); }
+.site-footer img { width: 2.25rem; height: 2.25rem; }
+.footer-brand { display: flex; align-items: center; gap: 0.75rem; }
+.site-footer a { color: var(--chalk); text-decoration: none; font-weight: 600; }
+.site-footer a:hover { color: var(--gold); }
+
+/* ---------- Ticker: words from the studio wall, running like a training-floor banner ---------- */
+.ticker-wrap { overflow: hidden; padding-block: 1.75rem; }
+.ticker {
+  background: var(--gold); color: var(--black);
+  width: 110%; margin-inline-start: -5%;
+  transform: rotate(-1.6deg);
+  box-shadow: 0 0 30px rgba(245, 196, 0, 0.25);
+}
+.ticker-track { display: flex; width: max-content; }
+.ticker-item {
+  display: flex; align-items: center; gap: 1.6rem; padding-inline-end: 1.6rem;
+  font-family: "Saira", sans-serif; font-weight: 900; font-style: italic; font-stretch: 70%;
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.3rem); text-transform: uppercase; line-height: 1;
+  padding-block: 0.7rem; white-space: nowrap;
+}
+:root[dir="rtl"] .ticker-item { font-family: "Changa", sans-serif; font-style: normal; font-weight: 800; }
+.ticker-item::after { content: ""; width: 0.55em; height: 0.55em; background: var(--black); transform: rotate(45deg); flex: none; }
+
+/* ---------- Motion ---------- */
+.shot img { transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.shot:hover img { transform: scale(1.05); }
+.btn-gold { position: relative; overflow: hidden; }
+.btn-gold::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  transform: translateX(-120%); transition: transform 0.6s ease;
+}
+.btn-gold:hover::after { transform: translateX(120%); }
+.site-header { transition: box-shadow 0.3s; }
+.site-header.scrolled { box-shadow: 0 1px 0 rgba(255, 181, 71, 0.45), 0 8px 24px rgba(255, 181, 71, 0.08); }
+.open-pill.is-open::before {
+  content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 50%;
+  background: #8be3ad; margin-inline-end: 0.45rem; vertical-align: 0.05em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance: the name slams in like plates loading onto a bar */
+  .hero-photo img { animation: slow-zoom 14s cubic-bezier(0.2, 0.6, 0.2, 1) both; }
+  .hero h1 .pain { animation: slam-in 0.75s cubic-bezier(0.2, 0.9, 0.25, 1.15) 0.1s both; }
+  .hero h1 .amp  { animation: pop-in 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 0.4s both; }
+  .hero h1 .gain { animation: slam-in-r 0.75s cubic-bezier(0.2, 0.9, 0.25, 1.15) 0.28s both; }
+  .hero-lead     { animation: rise 0.7s ease 0.6s both; }
+  .hero-actions  { animation: rise 0.7s ease 0.75s both; }
+  .hero .cove    { animation-delay: 0.95s; }
+  @keyframes slow-zoom { from { transform: scale(1.14); } to { transform: scale(1); } }
+  @keyframes slam-in   { from { opacity: 0; transform: translateX(-0.6em) skewX(-14deg); } to { opacity: 1; transform: none; } }
+  @keyframes slam-in-r { from { opacity: 0; transform: translateX(0.6em) skewX(-14deg); } to { opacity: 1; transform: none; } }
+  @keyframes pop-in    { from { opacity: 0; transform: scale(0.2) rotate(-25deg); } to { opacity: 1; transform: none; } }
+  @keyframes rise      { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  .ticker-track { animation: ticker 38s linear infinite; }
+  :root[dir="rtl"] .ticker-track { animation-name: ticker-rtl; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  @keyframes ticker     { to { transform: translateX(-50%); } }
+  @keyframes ticker-rtl { to { transform: translateX(50%); } }
+
+  .open-pill.is-open::before { animation: pulse 2s ease-out infinite; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(139, 227, 173, 0.65); }
+    70%  { box-shadow: 0 0 0 7px rgba(139, 227, 173, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(139, 227, 173, 0); }
+  }
+
+  /* Scroll reveals. Only armed when the script runs (html.anim), so the page reads fine without it. */
+  .anim [data-reveal] {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: var(--d, 0s);
+  }
+  .anim [data-reveal].in { opacity: 1; transform: none; }
+
+  /* Each section's cove light switches on as you reach it */
+  .anim .section-head .cove { transform: scaleX(0); transform-origin: left center; }
+  :root[dir="rtl"].anim .section-head .cove { transform-origin: right center; }
+  .anim .section-head.in .cove { animation: switch-on 1.2s 0.15s both; }
+
+  /* Photos open with a light sweep from one side */
+  .anim .shot[data-reveal] {
+    opacity: 1; transform: none;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1s cubic-bezier(0.7, 0, 0.2, 1);
+    transition-delay: var(--d, 0s);
+  }
+  :root[dir="rtl"].anim .shot[data-reveal] { clip-path: inset(0 0 0 100%); }
+  .anim .shot[data-reveal].in { clip-path: inset(0 0 0 0); }
+  .anim .shot[data-reveal] img { transform: scale(1.18); transition: transform 1.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .anim .shot[data-reveal].in img { transform: scale(1); }
+  .anim .shot[data-reveal].in:hover img { transform: scale(1.05); transition-duration: 0.7s; }
+
+  /* Price board: rows slide in from the side, leader lines draw across */
+  .anim .plan[data-reveal] { transform: translateX(-36px); }
+  :root[dir="rtl"].anim .plan[data-reveal] { transform: translateX(36px); }
+  .anim .plan[data-reveal].in { transform: none; }
+  .anim .plan-name::after { transform: translateY(-0.3em) scaleX(0); transform-origin: left center; transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s; }
+  :root[dir="rtl"].anim .plan-name::after { transform-origin: right center; }
+  .anim .plan.in .plan-name::after { transform: translateY(-0.3em) scaleX(1); }
+}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 860px) {
+  .nav { display: none; }
+  .studio .wrap, .visit-band { grid-template-columns: 1fr; }
+  .floor-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .shot.big { grid-column: 1 / -1; grid-row: auto; }
+  .shot.big img { aspect-ratio: 16 / 9; min-height: 0; }
+}
+@media (max-width: 520px) {
+  .brand span { display: none; }
+  .header-actions .wa-text { display: none; }
+  .header-actions .btn-gold { padding: 0 0.8rem; }
+  .floor-grid { grid-template-columns: 1fr; }
+  .hero .wrap { padding-block: 3.5rem 2.5rem; }
+  .hero-photo img { object-position: 70% 40%; }
+  .plan-name { font-size: var(--step-1); }
+  .plan-price { font-size: var(--step-1); }
+  .wa-number { font-size: var(--step-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Pain &amp; Gain Gym">
+      <img src="img/logo.webp" alt="" width="44" height="44">
+      <span><b>Pain</b> &amp; Gain</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#floor" data-i18n="nav_floor">The floor</a>
+      <a href="#studio" data-i18n="nav_studio">Studio</a>
+      <a href="#plans" data-i18n="nav_plans">Plans</a>
+      <a href="#visit" data-i18n="nav_visit">Visit</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn btn-lang" id="lang-toggle" type="button" lang="ar">عربي</button>
+      <a class="btn btn-gold wa-link" href="https://wa.me/96176390404" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.17-3.48-8.41"/></svg>
+        <span class="wa-text">WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-photo">
+      <img src="img/floor-hero.webp" alt="" width="1440" height="753" fetchpriority="high">
+    </div>
+    <div class="wrap">
+      <h1 aria-label="Pain &amp; Gain">
+        <span class="pain">Pain</span>
+        <span class="amp" aria-hidden="true">&amp;</span>
+        <span class="gain">Gain</span>
+      </h1>
+      <p class="hero-lead" data-i18n="hero_lead">A full strength floor and a group-class studio under one roof in Baalbek. Come train with us.</p>
+      <div class="hero-actions">
+        <a class="btn btn-gold wa-link" href="https://wa.me/96176390404" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88m8.41-18.3A11.81 11.81 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.17-3.48-8.41"/></svg>
+          <span data-i18n="cta_whatsapp">Message us on WhatsApp</span>
+        </a>
+        <a class="btn btn-ghost" href="#plans" data-i18n="cta_plans">See plans</a>
+      </div>
+      <div class="cove" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker-track" id="ticker-track"></div>
+    </div>
+  </div>
+
+  <section class="section" id="floor" aria-labelledby="floor-h">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="cove" aria-hidden="true"></div>
+        <h2 id="floor-h" data-i18n="floor_h">The floor</h2>
+        <p data-i18n="floor_p">Racks of dumbbells from light to heavy, plate-loaded machines, cable stations, benches and a Smith machine. Mirrors along the walls and rubber flooring where the weights drop.</p>
+      </div>
+      <div class="floor-grid">
+        <figure class="shot big" data-reveal>
+          <img src="img/dumbbells.webp" alt="Dumbbell racks and adjustable benches along a mirrored wall" data-i18n-alt="alt_dumbbells" width="1440" height="754" loading="lazy">
+          <figcaption data-i18n="cap_free">Free weights</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="--d: 0.15s">
+          <img src="img/floor-machines.webp" alt="Cable machines and weight stacks on the main floor" data-i18n-alt="alt_machines" width="1440" height="753" loading="lazy">
+          <figcaption data-i18n="cap_machines">Machines and cables</figcaption>
+        </figure>
+        <figure class="shot" data-reveal style="--d: 0.3s">
+          <img src="img/plate-loaded.webp" alt="Plate-loaded machines on rubber flooring" data-i18n-alt="alt_plate" width="1440" height="754" loading="lazy">
+          <figcaption data-i18n="cap_plate">Plate-loaded</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section studio" id="studio" aria-labelledby="studio-h">
+    <div class="wrap">
+      <figure class="shot" data-reveal>
+        <img src="img/studio.webp" alt="The group-class studio with mirrors, a barre and stability balls" data-i18n-alt="alt_studio" width="1440" height="754" loading="lazy">
+      </figure>
+      <div class="section-head" data-reveal>
+        <div class="cove" aria-hidden="true"></div>
+        <h2 id="studio-h" data-i18n="studio_h">The studio</h2>
+        <p data-i18n="studio_p">A separate room for group classes, with its own mirrors and equipment. Zumba runs here as a monthly plan.</p>
+        <p class="class-times" data-i18n="zumba_times">Zumba: Tuesday and Thursday at 6:00 PM, Saturday at 11:00 AM</p>
+        <ul class="studio-list">
+          <li data-i18n="eq_mats">Mats</li>
+          <li data-i18n="eq_balls">Stability balls</li>
+          <li data-i18n="eq_kb">Kettlebells</li>
+          <li data-i18n="eq_med">Medicine balls</li>
+          <li data-i18n="eq_barre">Barre</li>
+        </ul>
+        <a class="btn btn-ghost wa-link" data-wa-msg="wa_msg_classes" href="https://wa.me/96176390404" target="_blank" rel="noopener" data-i18n="studio_cta">Ask about class times</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="plans" aria-labelledby="plans-h">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div class="cove" aria-hidden="true"></div>
+        <h2 id="plans-h" data-i18n="plans_h">Plans</h2>
+        <p data-i18n="plans_p">Pay at the front desk. Your membership starts the day you join.</p>
+      </div>
+      <div class="board" id="board">
+        <div class="plan" data-reveal style="--d: 0.00s">
+          <h3 class="plan-name" data-i18n="p_month">1 month</h3>
+          <div class="plan-price" dir="ltr" data-value="25">$25</div>
+          <p class="plan-note" data-i18n="p_month_note">Full access to the floor</p>
+        </div>
+        <div class="plan" data-reveal style="--d: 0.08s">
+          <h3 class="plan-name" data-i18n="p_3m">3 months</h3>
+          <div class="plan-price" dir="ltr" data-value="60">$60</div>
+          <p class="plan-note" data-i18n="p_3m_note">$15 less than paying month by month</p>
+        </div>
+        <div class="plan featured" data-reveal style="--d: 0.16s">
+          <h3 class="plan-name" data-i18n="p_year">1 year, men</h3>
+          <div class="plan-price" dir="ltr" data-value="200">$200</div>
+          <p class="plan-note" data-i18n="p_year_note">$100 less than paying month by month</p>
+        </div>
+        <div class="plan" data-reveal style="--d: 0.24s">
+          <h3 class="plan-name" data-i18n="p_rel">1 month, family member</h3>
+          <div class="plan-price" dir="ltr" data-value="20">$20</div>
+          <p class="plan-note" data-i18n="p_rel_note">For relatives of a current member</p>
+        </div>
+        <div class="plan" data-reveal style="--d: 0.32s">
+          <h3 class="plan-name" data-i18n="p_zumba">Zumba, 1 month</h3>
+          <div class="plan-price" dir="ltr" data-value="30">$30</div>
+          <p class="plan-note" data-i18n="p_zumba_note">Group classes in the studio</p>
+        </div>
+      </div>
+      <p class="board-foot" data-i18n="plans_foot">Prices in US dollars.</p>
+    </div>
+  </section>
+
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="wrap">
+      <div class="visit-band">
+        <div class="section-head" data-reveal>
+          <div class="cove" aria-hidden="true"></div>
+          <h2 id="visit-h" class="section-title" data-i18n="visit_h">Visit</h2>
+          <p data-i18n="visit_p">Find us on the underground floor of Jabak Center. Message us on WhatsApp to book your first visit.</p>
+          <div class="visit-details">
+            <!-- Example hours for the demo: replace with the gym's real hours. -->
+            <div class="detail hours">
+              <div class="hours-head">
+                <span class="wa-label" data-i18n="hours_label">Opening hours</span>
+                <span class="open-pill" id="open-pill" role="status" hidden></span>
+              </div>
+              <dl class="hours-list">
+                <div class="hours-row" data-days="1,2,3,4,5,6" data-open="06:00" data-close="23:00">
+                  <dt data-i18n="h_week">Monday to Saturday</dt><dd data-i18n="h_week_t">6:00 AM – 11:00 PM</dd>
+                </div>
+                <div class="hours-row" data-days="0" data-open="09:00" data-close="15:00">
+                  <dt data-i18n="h_sun">Sunday</dt><dd data-i18n="h_sun_t">9:00 AM – 3:00 PM</dd>
+                </div>
+                <div class="hours-row women" data-days="1,3,5">
+                  <dt data-i18n="h_women">Women only</dt><dd data-i18n="h_women_t">Mon, Wed, Fri, 9:00 AM – 12:00 PM</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="detail">
+              <span class="wa-label" data-i18n="addr_label">Address</span>
+              <p class="detail-value" data-i18n="addr">Jabak Center, underground floor, Baalbek</p>
+              <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=Jabak%20Center%20Baalbek" target="_blank" rel="noopener" data-i18n="maps">Open in Google Maps</a>
+            </div>
+            <div class="detail">
+              <span class="wa-label">Instagram</span>
+              <a class="detail-value ig-link" href="https://www.instagram.com/painxgaingym/" target="_blank" rel="noopener" dir="ltr">@painxgaingym</a>
+            </div>
+          </div>
+        </div>
+        <div class="wa-box" data-reveal style="--d: 0.15s">
+          <span class="wa-label" data-i18n="wa_label">WhatsApp and phone</span>
+          <span class="wa-number" id="wa-number" dir="ltr">+961 76 390 404</span>
+          <div class="wa-actions">
+            <a class="btn btn-gold wa-link" href="https://wa.me/96176390404" target="_blank" rel="noopener" data-i18n="wa_open">Open WhatsApp</a>
+            <button class="btn btn-ghost" id="copy-number" type="button" data-i18n="copy">Copy number</button>
+          </div>
+          <span class="copy-status" id="copy-status" role="status"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <img src="img/logo.webp" alt="" width="36" height="36" loading="lazy">
+      <span data-i18n="footer">© 2026 Pain &amp; Gain Gym</span>
+    </div>
+    <span data-i18n="footer_addr">Jabak Center, Baalbek</span>
+    <a href="https://www.instagram.com/painxgaingym/" target="_blank" rel="noopener" dir="ltr">Instagram @painxgaingym</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var WA = '96176390404';
+  var strings = {
+    en: {
+      nav_floor: 'The floor', nav_studio: 'Studio', nav_plans: 'Plans', nav_visit: 'Visit',
+      hero_lead: 'A full strength floor and a group-class studio under one roof in Baalbek. Come train with us.',
+      cta_whatsapp: 'Message us on WhatsApp', cta_plans: 'See plans',
+      floor_h: 'The floor',
+      floor_p: 'Racks of dumbbells from light to heavy, plate-loaded machines, cable stations, benches and a Smith machine. Mirrors along the walls and rubber flooring where the weights drop.',
+      cap_free: 'Free weights', cap_machines: 'Machines and cables', cap_plate: 'Plate-loaded',
+      alt_dumbbells: 'Dumbbell racks and adjustable benches along a mirrored wall',
+      alt_machines: 'Cable machines and weight stacks on the main floor',
+      alt_plate: 'Plate-loaded machines on rubber flooring',
+      alt_studio: 'The group-class studio with mirrors, a barre and stability balls',
+      studio_h: 'The studio',
+      studio_p: 'A separate room for group classes, with its own mirrors and equipment. Zumba runs here as a monthly plan.',
+      eq_mats: 'Mats', eq_balls: 'Stability balls', eq_kb: 'Kettlebells', eq_med: 'Medicine balls', eq_barre: 'Barre',
+      studio_cta: 'Ask about class times',
+      plans_h: 'Plans', plans_p: 'Pay at the front desk. Your membership starts the day you join.',
+      p_month: '1 month', p_month_note: 'Full access to the floor',
+      p_3m: '3 months', p_3m_note: '$15 less than paying month by month',
+      p_year: '1 year, men', p_year_note: '$100 less than paying month by month',
+      p_rel: '1 month, family member', p_rel_note: 'For relatives of a current member',
+      p_zumba: 'Zumba, 1 month', p_zumba_note: 'Group classes in the studio',
+      plans_foot: 'Prices in US dollars.',
+      visit_h: 'Visit',
+      visit_p: 'Find us on the underground floor of Jabak Center. Message us on WhatsApp to book your first visit.',
+      hours_label: 'Opening hours', open_now: 'Open now', closed_now: 'Closed now',
+      h_week: 'Monday to Saturday', h_week_t: '6:00 AM – 11:00 PM',
+      h_sun: 'Sunday', h_sun_t: '9:00 AM – 3:00 PM',
+      h_women: 'Women only', h_women_t: 'Mon, Wed, Fri, 9:00 AM – 12:00 PM',
+      zumba_times: 'Zumba: Tuesday and Thursday at 6:00 PM, Saturday at 11:00 AM',
+      addr_label: 'Address', addr: 'Jabak Center, underground floor, Baalbek', maps: 'Open in Google Maps',
+      footer_addr: 'Jabak Center, Baalbek',
+      wa_label: 'WhatsApp and phone', wa_open: 'Open WhatsApp', copy: 'Copy number', copied: 'Number copied',
+      copy_fail: 'Select the number above to copy it',
+      footer: '© 2026 Pain & Gain Gym',
+      wa_msg: 'Hi, I’d like to know more about Pain & Gain Gym.',
+      wa_msg_classes: 'Hi, what are the class times at Pain & Gain?',
+      ticker: ['No pain no gain', 'Train', 'Strength', 'Sweat', 'Discipline', 'Pain & Gain'],
+      lang_btn: 'عربي', lang_btn_lang: 'ar',
+      title: 'Pain & Gain Gym'
+    },
+    ar: {
+      nav_floor: 'الصالة', nav_studio: 'الاستوديو', nav_plans: 'الاشتراكات', nav_visit: 'زورونا',
+      hero_lead: 'صالة كاملة لتمارين القوة واستوديو للحصص الجماعية تحت سقف واحد في بعلبك. تعال وتمرّن معنا.',
+      cta_whatsapp: 'راسلنا على واتساب', cta_plans: 'الاشتراكات والأسعار',
+      floor_h: 'الصالة',
+      floor_p: 'رفوف دمبلز من الخفيف إلى الثقيل، أجهزة تعمل بالأقراص، محطات كابل، مقاعد وجهاز سميث. مرايا على طول الجدران وأرضية مطاطية حيث تنزل الأوزان.',
+      cap_free: 'أوزان حرة', cap_machines: 'أجهزة وكابلات', cap_plate: 'أجهزة بالأقراص',
+      alt_dumbbells: 'رفوف دمبلز ومقاعد قابلة للتعديل بجانب جدار من المرايا',
+      alt_machines: 'أجهزة كابل وأوزان في الصالة الرئيسية',
+      alt_plate: 'أجهزة تعمل بالأقراص على أرضية مطاطية',
+      alt_studio: 'استوديو الحصص الجماعية مع مرايا وبار وكرات توازن',
+      studio_h: 'الاستوديو',
+      studio_p: 'غرفة منفصلة للحصص الجماعية بمراياها ومعداتها الخاصة. الزومبا تُقام هنا باشتراك شهري.',
+      eq_mats: 'حصائر', eq_balls: 'كرات توازن', eq_kb: 'كيتلبل', eq_med: 'كرات طبية', eq_barre: 'بار',
+      studio_cta: 'اسأل عن مواعيد الحصص',
+      plans_h: 'الاشتراكات', plans_p: 'الدفع في الاستقبال، ويبدأ اشتراكك من يوم انتسابك.',
+      p_month: 'شهر واحد', p_month_note: 'دخول كامل إلى الصالة',
+      p_3m: '3 أشهر', p_3m_note: 'أوفر بـ 15$ من الدفع شهراً بشهر',
+      p_year: 'سنة كاملة، للرجال', p_year_note: 'أوفر بـ 100$ من الدفع شهراً بشهر',
+      p_rel: 'شهر واحد، لأحد الأقارب', p_rel_note: 'لأقارب عضو مشترك حالياً',
+      p_zumba: 'زومبا، شهر واحد', p_zumba_note: 'حصص جماعية في الاستوديو',
+      plans_foot: 'الأسعار بالدولار الأميركي.',
+      visit_h: 'زورونا',
+      visit_p: 'تجدنا في الطابق السفلي من سنتر جباق. راسلنا على واتساب لترتيب زيارتك الأولى.',
+      hours_label: 'مواعيد الدوام', open_now: 'مفتوح الآن', closed_now: 'مغلق الآن',
+      h_week: 'من الاثنين إلى السبت', h_week_t: '6:00 ص – 11:00 م',
+      h_sun: 'الأحد', h_sun_t: '9:00 ص – 3:00 م',
+      h_women: 'للسيدات فقط', h_women_t: 'الاثنين والأربعاء والجمعة، 9:00 ص – 12:00 م',
+      zumba_times: 'الزومبا: الثلاثاء والخميس الساعة 6:00 م، والسبت الساعة 11:00 ص',
+      addr_label: 'العنوان', addr: 'سنتر جباق، الطابق السفلي، بعلبك', maps: 'افتح في خرائط Google',
+      footer_addr: 'سنتر جباق، بعلبك',
+      wa_label: 'واتساب وهاتف', wa_open: 'افتح واتساب', copy: 'نسخ الرقم', copied: 'تم نسخ الرقم',
+      copy_fail: 'حدّد الرقم في الأعلى لنسخه',
+      footer: '© 2026 نادي Pain & Gain',
+      wa_msg: 'مرحباً، أريد معرفة المزيد عن نادي Pain & Gain.',
+      wa_msg_classes: 'مرحباً، ما هي مواعيد الحصص في Pain & Gain؟',
+      ticker: ['لا إنجاز بلا تعب', 'تمرّن', 'قوة', 'عرق', 'انضباط', 'Pain & Gain'],
+      lang_btn: 'English', lang_btn_lang: 'en',
+      title: 'نادي Pain & Gain'
+    }
+  };
+
+  var root = document.documentElement;
+  var current = 'en';
+
+  function waHref(msgKey) {
+    return 'https://wa.me/' + WA + '?text=' + encodeURIComponent(strings[current][msgKey || 'wa_msg']);
+  }
+
+  function apply(lang) {
+    current = lang;
+    var t = strings[lang];
+    root.lang = lang;
+    root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.title = t.title;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n')];
+      if (v != null) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var v = t[el.getAttribute('data-i18n-alt')];
+      if (v != null) el.alt = v;
+    });
+    document.querySelectorAll('.wa-link').forEach(function (el) {
+      el.href = waHref(el.getAttribute('data-wa-msg'));
+    });
+    var btn = document.getElementById('lang-toggle');
+    btn.textContent = t.lang_btn;
+    btn.lang = t.lang_btn_lang;
+    document.getElementById('copy-status').textContent = '';
+    updateHours();
+    buildTicker(t.ticker);
+    try { localStorage.setItem('pg-lang', lang); } catch (e) {}
+  }
+
+  function beirutNow() {
+    var parts = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Beirut', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+    return {
+      day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday),
+      mins: Number(parts.hour) * 60 + Number(parts.minute)
+    };
+  }
+  function toMins(hhmm) { var p = hhmm.split(':'); return Number(p[0]) * 60 + Number(p[1]); }
+
+  function updateHours() {
+    var pill = document.getElementById('open-pill');
+    try {
+      var now = beirutNow();
+      var open = false;
+      document.querySelectorAll('.hours-row').forEach(function (row) {
+        var today = row.getAttribute('data-days').split(',').map(Number).indexOf(now.day) !== -1;
+        var isWomen = row.classList.contains('women');
+        row.classList.toggle('today', today && !isWomen);
+        if (today && !isWomen && now.mins >= toMins(row.getAttribute('data-open')) && now.mins < toMins(row.getAttribute('data-close'))) open = true;
+      });
+      pill.textContent = strings[current][open ? 'open_now' : 'closed_now'];
+      pill.classList.toggle('is-open', open);
+      pill.hidden = false;
+    } catch (e) {
+      pill.hidden = true;
+    }
+  }
+  setInterval(updateHours, 60000);
+
+  // Two identical halves so the -50% loop is seamless; each half is wide enough to cover any screen.
+  function buildTicker(words) {
+    var track = document.getElementById('ticker-track');
+    var half = [];
+    for (var r = 0; r < 3; r++) half = half.concat(words);
+    track.textContent = '';
+    for (var k = 0; k < 2; k++) {
+      half.forEach(function (w) {
+        var span = document.createElement('span');
+        span.className = 'ticker-item';
+        span.textContent = w;
+        track.appendChild(span);
+      });
+    }
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('pg-lang'); } catch (e) {}
+  var initial = saved || ((navigator.language || '').toLowerCase().indexOf('ar') === 0 ? 'ar' : 'en');
+  apply(initial);
+
+  var header = document.querySelector('.site-header');
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 12); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Prices tick up from zero when the board comes into view.
+  function countUp() {
+    document.querySelectorAll('.plan-price[data-value]').forEach(function (el, idx) {
+      var target = Number(el.getAttribute('data-value'));
+      var start = null;
+      var delay = 250 + idx * 80;
+      function frame(ts) {
+        if (start === null) start = ts + delay;
+        var p = Math.min(Math.max((ts - start) / 900, 0), 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = '$' + Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      el.textContent = '$0';
+      requestAnimationFrame(frame);
+    });
+  }
+
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    root.classList.add('anim');
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        if (e.target.id === 'board') countUp();
+        else e.target.classList.add('in');
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(function (el) { io.observe(el); });
+    io.observe(document.getElementById('board'));
+  }
+
+  document.getElementById('lang-toggle').addEventListener('click', function () {
+    apply(current === 'en' ? 'ar' : 'en');
+  });
+
+  document.getElementById('copy-number').addEventListener('click', function () {
+    var status = document.getElementById('copy-status');
+    var number = document.getElementById('wa-number');
+    function fallback() {
+      var range = document.createRange();
+      range.selectNodeContents(number);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      status.textContent = strings[current].copy_fail;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText('+' + WA).then(function () {
+        status.textContent = strings[current].copied;
+      }, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
